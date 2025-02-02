@@ -2,15 +2,39 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Transform": "AWS::Serverless-2016-10-31",
   "Description": "Deploy a new Lambda function and API Gateway if one does not exist",
+  "Parameters": {
+    "KinesisStreamName": {
+      "Type": "String",
+      "Description": "The name of the Kinesis stream that will be used for processing events.",
+      "Default": "ImageEventStream"
+    }
+  },
   "Resources": {
+    "KinesisStream": {
+      "Type": "AWS::Kinesis::Stream",
+      "Properties": {
+        "Name": {
+          "Ref": "KinesisStreamName"
+        },
+        "ShardCount": 1
+      }
+    },
     "ApiGateway": {
       "Type": "AWS::Serverless::HttpApi",
       "Properties": {
         "StageName": "prod",
         "CorsConfiguration": {
-          "AllowMethods": ["GET", "POST", "OPTIONS"],
-          "AllowHeaders": ["*"],
-          "AllowOrigins": ["*"]
+          "AllowMethods": [
+            "GET",
+            "POST",
+            "OPTIONS"
+          ],
+          "AllowHeaders": [
+            "*"
+          ],
+          "AllowOrigins": [
+            "*"
+          ]
         }
       }
     },
@@ -33,7 +57,9 @@
             "Properties": {
               "Path": "/image",
               "Method": "POST",
-              "ApiId": { "Ref": "ApiGateway" }
+              "ApiId": {
+                "Ref": "ApiGateway"
+              }
             }
           },
           "GetEvents": {
@@ -41,7 +67,9 @@
             "Properties": {
               "Path": "/events",
               "Method": "GET",
-              "ApiId": { "Ref": "ApiGateway" }
+              "ApiId": {
+                "Ref": "ApiGateway"
+              }
             }
           }
         }
@@ -51,10 +79,55 @@
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
-        "FunctionName": { "Ref": "NewImageApiLambda" },
+        "FunctionName": {
+          "Ref": "NewImageApiLambda"
+        },
         "Principal": "apigateway.amazonaws.com",
         "SourceArn": {
           "Fn::Sub": "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*"
+        }
+      }
+    },
+    "KinesisProcessorLambda": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "FunctionName": "KinesisEventProcessor",
+        "Handler": "ImageApi::ImageApi.KinesisEventProcessor::FunctionHandlerAsync",
+        "Runtime": "dotnet8",
+        "CodeUri": "./publish",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole",
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "kinesis:GetRecords",
+                  "kinesis:GetShardIterator",
+                  "kinesis:DescribeStream",
+                  "kinesis:ListStreams"
+                ],
+                "Resource": {
+                  "Fn::Sub": "arn:aws:kinesis:${AWS::Region}:${AWS::AccountId}:stream/${KinesisStreamName}"
+                }
+              }
+            ]
+          }
+        ],
+        "Events": {
+          "KinesisEvent": {
+            "Type": "Kinesis",
+            "Properties": {
+              "Stream": {
+                "Fn::Sub": "arn:aws:kinesis:${AWS::Region}:${AWS::AccountId}:stream/${KinesisStreamName}"
+              },
+              "StartingPosition": "LATEST",
+              "BatchSize": 10
+            }
+          }
         }
       }
     }

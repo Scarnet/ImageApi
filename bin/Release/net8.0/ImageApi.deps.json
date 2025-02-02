@@ -9,6 +9,7 @@
       "ImageApi/1.0.0": {
         "dependencies": {
           "Amazon.Lambda.AspNetCoreServer": "9.0.3",
+          "Amazon.Lambda.KinesisEvents": "2.2.0",
           "Newtonsoft.Json": "13.0.3",
           "Swashbuckle.AspNetCore": "6.6.2"
         },
@@ -55,6 +56,17 @@
           }
         }
       },
+      "Amazon.Lambda.KinesisEvents/2.2.0": {
+        "dependencies": {
+          "AWSSDK.Kinesis": "3.7.0"
+        },
+        "runtime": {
+          "lib/net8.0/Amazon.Lambda.KinesisEvents.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Amazon.Lambda.Logging.AspNetCore/3.1.1": {
         "dependencies": {
           "Amazon.Lambda.Core": "2.5.0",
@@ -77,6 +89,25 @@
           "lib/net8.0/Amazon.Lambda.Serialization.SystemTextJson.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "AWSSDK.Core/3.7.0": {
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.0.0"
+          }
+        }
+      },
+      "AWSSDK.Kinesis/3.7.0": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Kinesis.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.0.0"
           }
         }
       },
@@ -210,6 +241,13 @@
       "path": "amazon.lambda.core/2.5.0",
       "hashPath": "amazon.lambda.core.2.5.0.nupkg.sha512"
     },
+    "Amazon.Lambda.KinesisEvents/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9yru+eM0do1JQ6mb/qP7jZqgv723OuoNcduYtZVIKhaY14dJKwcOXHExXsChfLqh1324fKqUTKNuVJz8aY+RBA==",
+      "path": "amazon.lambda.kinesisevents/2.2.0",
+      "hashPath": "amazon.lambda.kinesisevents.2.2.0.nupkg.sha512"
+    },
     "Amazon.Lambda.Logging.AspNetCore/3.1.1": {
       "type": "package",
       "serviceable": true,
@@ -223,6 +261,20 @@
       "sha512": "sha512-iv/cvqFuZ3v3+NFDyof0IJZvU+4kdpzOe3pWSBwp9HB885I+D32WQxuid9V4GnvRynER9XnWMPaDmImX8qH5cA==",
       "path": "amazon.lambda.serialization.systemtextjson/2.4.4",
       "hashPath": "amazon.lambda.serialization.systemtextjson.2.4.4.nupkg.sha512"
+    },
+    "AWSSDK.Core/3.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XAJf4spA5DX99Ces7yY2m3sxg2+drWETfWUa0YtVi9EOJJu1Jf2vwcHVyNcWaw7TeAs2pypsHSEBxcQby3QYZw==",
+      "path": "awssdk.core/3.7.0",
+      "hashPath": "awssdk.core.3.7.0.nupkg.sha512"
+    },
+    "AWSSDK.Kinesis/3.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1p5BbqzAC3C7UYAbh4Y+i8X0XVorIy1+5BIbqo0bM5pDO+dru/YhtJdqdlVIvqKoU1aKKvUBeOZ6L59zfNcaMQ==",
+      "path": "awssdk.kinesis/3.7.0",
+      "hashPath": "awssdk.kinesis.3.7.0.nupkg.sha512"
     },
     "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
       "type": "package",

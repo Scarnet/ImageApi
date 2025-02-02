@@ -64,6 +64,22 @@
           }
         }
       },
+      "Amazon.Lambda.KinesisEvents/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Kinesis": "3.7.0"
+        },
+        "compile": {
+          "lib/net8.0/Amazon.Lambda.KinesisEvents.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Amazon.Lambda.KinesisEvents.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Amazon.Lambda.Logging.AspNetCore/3.1.1": {
         "type": "package",
         "dependencies": {
@@ -96,6 +112,35 @@
         "runtime": {
           "lib/net8.0/Amazon.Lambda.Serialization.SystemTextJson.dll": {
             "related": ".xml"
+          }
+        }
+      },
+      "AWSSDK.Core/3.7.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "AWSSDK.Kinesis/3.7.0": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.7.0, 3.8.0)"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.Kinesis.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Kinesis.dll": {
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -420,6 +465,23 @@
         "lib/netstandard2.0/Amazon.Lambda.Core.xml"
       ]
     },
+    "Amazon.Lambda.KinesisEvents/2.2.0": {
+      "sha512": "9yru+eM0do1JQ6mb/qP7jZqgv723OuoNcduYtZVIKhaY14dJKwcOXHExXsChfLqh1324fKqUTKNuVJz8aY+RBA==",
+      "type": "package",
+      "path": "amazon.lambda.kinesisevents/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "amazon.lambda.kinesisevents.2.2.0.nupkg.sha512",
+        "amazon.lambda.kinesisevents.nuspec",
+        "lib/net8.0/Amazon.Lambda.KinesisEvents.dll",
+        "lib/net8.0/Amazon.Lambda.KinesisEvents.xml",
+        "lib/netcoreapp3.1/Amazon.Lambda.KinesisEvents.dll",
+        "lib/netcoreapp3.1/Amazon.Lambda.KinesisEvents.xml",
+        "lib/netstandard2.0/Amazon.Lambda.KinesisEvents.dll",
+        "lib/netstandard2.0/Amazon.Lambda.KinesisEvents.xml"
+      ]
+    },
     "Amazon.Lambda.Logging.AspNetCore/3.1.1": {
       "sha512": "q7ZUrjVulikcV8+hMIrAk+LJe3xQsdWCtM/yS0enjajopOuit71xYAJhrT1eXstvZMpqfg+B7gCUJboN9lHG9g==",
       "type": "package",
@@ -449,6 +511,58 @@
         "lib/net8.0/Amazon.Lambda.Serialization.SystemTextJson.xml",
         "lib/netcoreapp3.1/Amazon.Lambda.Serialization.SystemTextJson.dll",
         "lib/netcoreapp3.1/Amazon.Lambda.Serialization.SystemTextJson.xml"
+      ]
+    },
+    "AWSSDK.Core/3.7.0": {
+      "sha512": "XAJf4spA5DX99Ces7yY2m3sxg2+drWETfWUa0YtVi9EOJJu1Jf2vwcHVyNcWaw7TeAs2pypsHSEBxcQby3QYZw==",
+      "type": "package",
+      "path": "awssdk.core/3.7.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "awssdk.core.3.7.0.nupkg.sha512",
+        "awssdk.core.nuspec",
+        "lib/net35/AWSSDK.Core.dll",
+        "lib/net35/AWSSDK.Core.pdb",
+        "lib/net35/AWSSDK.Core.xml",
+        "lib/net45/AWSSDK.Core.dll",
+        "lib/net45/AWSSDK.Core.pdb",
+        "lib/net45/AWSSDK.Core.xml",
+        "lib/netcoreapp3.1/AWSSDK.Core.dll",
+        "lib/netcoreapp3.1/AWSSDK.Core.pdb",
+        "lib/netcoreapp3.1/AWSSDK.Core.xml",
+        "lib/netstandard2.0/AWSSDK.Core.dll",
+        "lib/netstandard2.0/AWSSDK.Core.pdb",
+        "lib/netstandard2.0/AWSSDK.Core.xml",
+        "tools/account-management.ps1"
+      ]
+    },
+    "AWSSDK.Kinesis/3.7.0": {
+      "sha512": "1p5BbqzAC3C7UYAbh4Y+i8X0XVorIy1+5BIbqo0bM5pDO+dru/YhtJdqdlVIvqKoU1aKKvUBeOZ6L59zfNcaMQ==",
+      "type": "package",
+      "path": "awssdk.kinesis/3.7.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.Kinesis.CodeAnalysis.dll",
+        "awssdk.kinesis.3.7.0.nupkg.sha512",
+        "awssdk.kinesis.nuspec",
+        "lib/net35/AWSSDK.Kinesis.dll",
+        "lib/net35/AWSSDK.Kinesis.pdb",
+        "lib/net35/AWSSDK.Kinesis.xml",
+        "lib/net45/AWSSDK.Kinesis.dll",
+        "lib/net45/AWSSDK.Kinesis.pdb",
+        "lib/net45/AWSSDK.Kinesis.xml",
+        "lib/netcoreapp3.1/AWSSDK.Kinesis.dll",
+        "lib/netcoreapp3.1/AWSSDK.Kinesis.pdb",
+        "lib/netcoreapp3.1/AWSSDK.Kinesis.xml",
+        "lib/netstandard2.0/AWSSDK.Kinesis.dll",
+        "lib/netstandard2.0/AWSSDK.Kinesis.pdb",
+        "lib/netstandard2.0/AWSSDK.Kinesis.xml",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
       ]
     },
     "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
@@ -1003,6 +1117,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Amazon.Lambda.AspNetCoreServer >= 9.0.3",
+      "Amazon.Lambda.KinesisEvents >= 2.2.0",
       "Newtonsoft.Json >= 13.0.3",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
@@ -1060,6 +1175,10 @@
           "Amazon.Lambda.AspNetCoreServer": {
             "target": "Package",
             "version": "[9.0.3, )"
+          },
+          "Amazon.Lambda.KinesisEvents": {
+            "target": "Package",
+            "version": "[2.2.0, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",

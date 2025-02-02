@@ -2,8 +2,7 @@
 
 public static class StartupHelper
 {
-    private static List<ImageEvent> imageEvents = new();
-
+    private static ImageRepository repository = new();
     public static void ConfigureServices(this IServiceCollection services)
     {
         services.AddEndpointsApiExplorer();
@@ -53,12 +52,7 @@ public static class StartupHelper
                 Timestamp = DateTime.UtcNow
             };
 
-            imageEvents.Add(eventRecord);
-
-            if (imageEvents.Count > 100)
-            {
-                imageEvents.RemoveAt(0);
-            }
+            repository.Add(eventRecord);
 
             return Results.Ok(new { Message = "Image event stored!", eventRecord });
         });
@@ -68,14 +62,12 @@ public static class StartupHelper
     {
         endpoints.MapGet("/events", () =>
         {
-            var lastHourEventsCount = imageEvents
-                .Where(e => e.Timestamp > DateTime.UtcNow.AddHours(-1))
-                .Count();
+            var lastHourEventsCount = repository.GetLastHourEventCount();
 
             return Results.Ok(new
             {
                 LastHourCount = lastHourEventsCount,
-                LatestEvent = imageEvents.LastOrDefault()
+                LatestEvent = repository.GetLatestEvent(),
             });
         });
     }
