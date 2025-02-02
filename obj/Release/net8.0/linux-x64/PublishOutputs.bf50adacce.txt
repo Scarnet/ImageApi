@@ -1,0 +1,17 @@
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\ImageApi
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\appsettings.Development.json
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\appsettings.json
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\ImageApi.dll
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\ImageApi.deps.json
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\ImageApi.runtimeconfig.json
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\ImageApi.pdb
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\Amazon.Lambda.APIGatewayEvents.dll
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\Amazon.Lambda.ApplicationLoadBalancerEvents.dll
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\Amazon.Lambda.AspNetCoreServer.dll
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\Amazon.Lambda.Core.dll
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\Amazon.Lambda.Logging.AspNetCore.dll
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\Amazon.Lambda.Serialization.SystemTextJson.dll
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\Microsoft.OpenApi.dll
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\Swashbuckle.AspNetCore.SwaggerUI.dll

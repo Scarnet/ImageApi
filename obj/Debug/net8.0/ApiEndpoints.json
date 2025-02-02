@@ -1,0 +1,40 @@
+[
+  {
+    "ContainingType": "ImageApi.StartupHelper\u002B\u003C\u003Ec",
+    "Method": "\u003CCreateImageGetHandler\u003Eb__4_0",
+    "RelativePath": "events",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ImageApi.StartupHelper\u002B\u003C\u003Ec",
+    "Method": "\u003CCreateImagePostHandler\u003Eb__3_0",
+    "RelativePath": "image",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ImageApi.ImageEvent",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

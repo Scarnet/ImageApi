@@ -1,0 +1,55 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Transform": "AWS::Serverless-2016-10-31",
+  "Description": "Deploy a new Lambda function with a fixed API Gateway",
+  "Resources": {
+    "ApiGateway": {
+      "Type": "AWS::ApiGateway::RestApi",
+      "Properties": {
+        "RestApiId": "ye5df9n5y3",
+        "Name": "ImageApiGateway"
+      }
+    },
+    "NewImageApiLambda": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "FunctionName": "ImageLambda",
+        "Handler": "ImageApi::ImageApi.LambdaEntryPoint::FunctionHandlerAsync",
+        "Runtime": "dotnet8",
+        "CodeUri": "./publish",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "Role": "arn:aws:iam::288761734568:role/ImageApiLambdaRole",
+        "Events": {
+          "ApiGatewayEvent": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/{proxy+}",
+              "Method": "ANY",
+              "RestApiId": { "Ref": "ApiGateway" }
+            }
+          }
+        }
+      }
+    },
+    "ApiGatewayInvokePermission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": { "Ref": "NewImageApiLambda" },
+        "Principal": "apigateway.amazonaws.com"
+      }
+    }
+  },
+  "Outputs": {
+    "ApiGatewayInvokeURL": {
+      "Description": "Invoke URL for API Gateway",
+      "Value": {
+        "Fn::Sub": "https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com/prod/"
+      }
+    }
+  }
+}
