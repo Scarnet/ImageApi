@@ -1,13 +1,17 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Transform": "AWS::Serverless-2016-10-31",
-  "Description": "Deploy a new Lambda function with a fixed API Gateway",
+  "Description": "Deploy a new Lambda function and API Gateway if one does not exist",
   "Resources": {
     "ApiGateway": {
-      "Type": "AWS::ApiGateway::RestApi",
+      "Type": "AWS::Serverless::HttpApi",
       "Properties": {
-        "RestApiId": "ye5df9n5y3",
-        "Name": "ImageApiGateway"
+        "StageName": "prod",
+        "CorsConfiguration": {
+          "AllowMethods": ["GET", "POST", "OPTIONS"],
+          "AllowHeaders": ["*"],
+          "AllowOrigins": ["*"]
+        }
       }
     },
     "NewImageApiLambda": {
@@ -24,12 +28,20 @@
         ],
         "Role": "arn:aws:iam::288761734568:role/ImageApiLambdaRole",
         "Events": {
-          "ApiGatewayEvent": {
-            "Type": "Api",
+          "PostImage": {
+            "Type": "HttpApi",
             "Properties": {
-              "Path": "/{proxy+}",
-              "Method": "ANY",
-              "RestApiId": { "Ref": "ApiGateway" }
+              "Path": "/image",
+              "Method": "POST",
+              "ApiId": { "Ref": "ApiGateway" }
+            }
+          },
+          "GetEvents": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/events",
+              "Method": "GET",
+              "ApiId": { "Ref": "ApiGateway" }
             }
           }
         }
@@ -40,7 +52,10 @@
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": { "Ref": "NewImageApiLambda" },
-        "Principal": "apigateway.amazonaws.com"
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Sub": "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*"
+        }
       }
     }
   },

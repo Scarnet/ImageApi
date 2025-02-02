@@ -81,3 +81,12 @@ C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\publish
 C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\publish\publish\publish\publish\publish\ImageApi.runtimeconfig.json
 C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\publish\publish\publish\publish\publish\ImageApi.staticwebassets.endpoints.json
 C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\publish\publish\publish\publish\response.json
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\obj\Release\net8.0\ImageApi.sourcelink.json
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\publish\publish\publish\publish\publish\publish\web.config
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\publish\publish\publish\publish\publish\publish\appsettings.Development.json
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\publish\publish\publish\publish\publish\publish\appsettings.json
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\publish\publish\publish\publish\publish\publish\ImageApi.deps.json
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\publish\publish\publish\publish\publish\publish\ImageApi.runtimeconfig.json
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\publish\publish\publish\publish\publish\publish\ImageApi.staticwebassets.endpoints.json
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\publish\publish\publish\publish\publish\publish\response.json
+C:\Users\XxSca\source\repos\ImageApi\ImageApi\bin\Release\net8.0\Newtonsoft.Json.dll

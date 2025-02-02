@@ -1,35 +1,52 @@
 ﻿using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.AspNetCoreServer;
-using Amazon.Lambda.AspNetCoreServer.Internal;
 using Amazon.Lambda.Core;
+using Newtonsoft.Json;
 
+[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 namespace ImageApi;
-public class LambdaEntryPoint : APIGatewayHttpApiV2ProxyFunction
+public class LambdaEntryPoint : AbstractAspNetCoreFunction
 {
-    protected override void Init(IWebHostBuilder builder)
+    private IWebHost webHost;
+    public LambdaEntryPoint()
     {
-        builder.ConfigureServices((context, services) =>
-        {
-            services.ConfigureServices();
-        });
-
-        builder.Configure(app =>
-        {
-            app.UseRouting();
-            app.ConfigurePipeline();
-        });
+        this.webHost = new WebHostBuilder()
+            .UseKestrel()
+            .ConfigureServices((context, services) =>
+            {
+                services.ConfigureServices();
+            })
+            .Configure(app =>
+            {
+                app.UseRouting();
+                app.ConfigurePipeline();
+            })
+            .Build();
     }
 
-    protected override void MarshallRequest(InvokeFeatures features, APIGatewayHttpApiV2ProxyRequest apiGatewayRequest, ILambdaContext lambdaContext)
+    public async Task FunctionHandlerAsync(Stream inputStream, ILambdaContext context)
     {
-        lambdaContext.Logger.LogLine("Received request from API Gateway.");
+        var input = await new StreamReader(inputStream).ReadToEndAsync();
 
-        if (apiGatewayRequest == null)
+        if (input.Contains("requestContext"))
         {
-            lambdaContext.Logger.LogLine("Error: API Gateway request is null!");
-            throw new ArgumentNullException(nameof(apiGatewayRequest), "API Gateway request is null.");
+            context.Logger.LogLine("Processing API Gateway Event.");
+            var apiEvent = JsonConvert.DeserializeObject<APIGatewayHttpApiV2ProxyRequest>(input);
+            var response = await ProcessApiGatewayRequest(apiEvent, context);
+            return;
         }
+    }
 
-        base.MarshallRequest(features, apiGatewayRequest, lambdaContext);
+    /// <summary>
+    /// Manually processes API Gateway requests through ASP.NET Core.
+    /// </summary>
+    private async Task<APIGatewayHttpApiV2ProxyResponse> ProcessApiGatewayRequest(APIGatewayHttpApiV2ProxyRequest request, ILambdaContext context)
+    {
+        using (var scope = webHost.Services.CreateScope())
+        {
+            var serviceProvider = scope.ServiceProvider;
+            var lambdaHandler = serviceProvider.GetRequiredService<APIGatewayHttpApiV2ProxyFunction>();
+            return await lambdaHandler.FunctionHandlerAsync(request, context);
+        }
     }
 }
