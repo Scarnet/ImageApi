@@ -1,20 +1,20 @@
-#### Overview
+### Overview
 - This project for a coding challenge for Fullstack Developer Exercise from WECHEER.IO
 - In the serverless.template two AWS Lambdas Are defined one that is exposed through an API gateway and another one that is integrated with Kinesis stream provider
 
-#### Add new event
+### Add new event
 - Call POST https://b8m0yrqzeg.execute-api.eu-central-1.amazonaws.com/prod/image
 - 
-## Sample payload
+### Sample payload
 {
   "ImageUrl": "https://www.huronelginwater.ca/app/uploads/2019/03/test.jpg",
   "Description": "Test new image"
 }
 
-#### Get latest event
+### Get latest event
 - Call GET https://b8m0yrqzeg.execute-api.eu-central-1.amazonaws.com/prod/events
 
-## Sample response
+### Sample response
 {
     "lastHourCount": 1,
     "latestEvent": {
@@ -24,8 +24,8 @@
     }
 }
 
-#### Frontend application
+### Frontend application
 Hosted in S3 bucket and can be accessed here http://image-viewer-test.s3-website.eu-central-1.amazonaws.com/display
 
-#### Note
+### Note
 Although a Kinesis streamer is defined, due to time limit, a consumer was not implemented
