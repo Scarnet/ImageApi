@@ -5,7 +5,7 @@
 ### Add new event
 - Call POST https://b8m0yrqzeg.execute-api.eu-central-1.amazonaws.com/prod/image
 - 
-### Sample payload
+#### Sample payload
 {
   "ImageUrl": "https://www.huronelginwater.ca/app/uploads/2019/03/test.jpg",
   "Description": "Test new image"
@@ -14,7 +14,7 @@
 ### Get latest event
 - Call GET https://b8m0yrqzeg.execute-api.eu-central-1.amazonaws.com/prod/events
 
-### Sample response
+#### Sample response
 {
     "lastHourCount": 1,
     "latestEvent": {
